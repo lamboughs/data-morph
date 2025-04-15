@@ -1,0 +1,34 @@
+<div class="container-fluid p-2">
+  <form [formGroup]="sourceObjectForm" (ngSubmit)="generateForm()">
+    <div class="d-flex flex-column gap-2">
+      <div class="col">
+        <div class="form-floating">
+          <textarea class="form-control" id="source-object-in" formControlName="sourceObject"></textarea>
+          <label for="source-object-in">Source Object Structure (json)</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary">Generate Form</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="formStructure" class="container-fluid form-area p-2">
+  <form>
+    <div class="d-flex flex-column gap-2">
+      <div *ngFor="let field of formStructure.fields" class="input-group">
+        <span class="input-group-text field-label">{{field.label}}</span>
+        <input type="text" class="form-control value-in">
+        <span class="input-group-text field-type">Type</span>
+        <select [value]="field.type" class="form-select field-type-in">
+          <option value="string">String</option>
+          <option value="number">Number</option>
+          <option value="boolean">Boolean</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
